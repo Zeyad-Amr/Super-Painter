@@ -71,11 +71,8 @@ public:
     bool getIsErase() const;
     void setIsErase(bool value);
 
-    bool getIsFilling() const;
-    void setIsFilling(bool value);
-
-    QColor getFillColor() const;
-    void setFillColor(const QColor &value);
+    bool getIsFullScreen() const;
+    void setIsFullScreen(bool value);
 
     QImage getCopyDrawing() const;
     void setCopyDrawing(const QImage &value);
@@ -87,7 +84,6 @@ private:
     QPoint firstPoint;
     QColor currentColor;
     QColor prevColor;
-    QColor fillColor;
     Qt::PenStyle penStyle;
     Qt::PenCapStyle capStyle;
     Qt::PenJoinStyle joinStyle;
@@ -103,6 +99,7 @@ private:
     bool isFilledTriangle;
     bool isFilling;
     bool isErase;
+    bool isFullScreen;
 
     bool mousePressed;
 };

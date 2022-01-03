@@ -19,5 +19,6 @@
         <file>images/triangle.png</file>
         <file>images/undo.png</file>
         <file>images/width.png</file>
+        <file>images/full-screen.png</file>
     </qresource>
 </RCC>

@@ -13,7 +13,19 @@
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>210</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout"/>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
@@ -39,7 +51,6 @@
      <string>Edit</string>
     </property>
     <addaction name="actionPen_color"/>
-    <addaction name="actionFill_color"/>
     <addaction name="actionPen_size"/>
     <addaction name="separator"/>
     <addaction name="actionResize"/>
@@ -55,10 +66,13 @@
      <addaction name="actionCircle"/>
      <addaction name="actionRectangle"/>
      <addaction name="actionTriangle"/>
+     <addaction name="actionLine"/>
+     <addaction name="actionFilledCircle"/>
+     <addaction name="actionFilledRectangle"/>
+     <addaction name="actionFilledTriangle"/>
     </widget>
     <addaction name="menuDraw"/>
     <addaction name="separator"/>
-    <addaction name="actionFill_with_coor"/>
     <addaction name="actionErase"/>
     <addaction name="separator"/>
     <addaction name="actionZoom_2"/>
@@ -95,12 +109,16 @@
    <addaction name="separator"/>
    <addaction name="actionCut"/>
    <addaction name="separator"/>
+   <addaction name="actionPen_size"/>
+   <addaction name="separator"/>
    <addaction name="actionZoom"/>
    <addaction name="separator"/>
    <addaction name="actionZoom_2"/>
    <addaction name="separator"/>
    <addaction name="actionUndo"/>
    <addaction name="actionRedo"/>
+   <addaction name="separator"/>
+   <addaction name="actionFull_Screen"/>
    <addaction name="separator"/>
   </widget>
   <widget class="QToolBar" name="toolBar_2">
@@ -132,6 +150,7 @@
    <addaction name="actionPen_color"/>
    <addaction name="separator"/>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen">
    <property name="text">
     <string>Open</string>
@@ -172,10 +191,23 @@
    <property name="text">
     <string>Pen color</string>
    </property>
+   <property name="shortcut">
+    <string>P</string>
+   </property>
   </action>
   <action name="actionPen_size">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/width.png</normaloff>:/images/width.png</iconset>
+   </property>
    <property name="text">
-    <string>Pen size</string>
+    <string>Thickness</string>
+   </property>
+   <property name="toolTip">
+    <string>Thickness</string>
+   </property>
+   <property name="shortcut">
+    <string>]</string>
    </property>
   </action>
   <action name="actionClose">
@@ -188,14 +220,6 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+W</string>
-   </property>
-  </action>
-  <action name="actionFill_with_coor">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Fill with color</string>
    </property>
   </action>
   <action name="actionErase">
@@ -313,11 +337,6 @@
     <string>Paste</string>
    </property>
   </action>
-  <action name="actionFill_color">
-   <property name="text">
-    <string>Fill color</string>
-   </property>
-  </action>
   <action name="actionZoom_2">
    <property name="icon">
     <iconset resource="res.qrc">
@@ -375,7 +394,7 @@
     <string>Filled Circle</string>
    </property>
    <property name="shortcut">
-    <string>Shift+C</string>
+    <string>Alt+C</string>
    </property>
   </action>
   <action name="actionFilledRectangle">
@@ -393,7 +412,7 @@
     <string>Filled Rectangle</string>
    </property>
    <property name="shortcut">
-    <string>Shift+R</string>
+    <string>Alt+R</string>
    </property>
   </action>
   <action name="actionFilledTriangle">
@@ -411,7 +430,7 @@
     <string>Filled Triangle</string>
    </property>
    <property name="shortcut">
-    <string>Shift+T</string>
+    <string>Alt+T</string>
    </property>
   </action>
   <action name="actionLine">
@@ -430,6 +449,21 @@
    </property>
    <property name="shortcut">
     <string>L</string>
+   </property>
+  </action>
+  <action name="actionFull_Screen">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/full-screen.png</normaloff>:/images/full-screen.png</iconset>
+   </property>
+   <property name="text">
+    <string>Full Screen</string>
+   </property>
+   <property name="toolTip">
+    <string>Full Screen</string>
+   </property>
+   <property name="shortcut">
+    <string>F11</string>
    </property>
   </action>
  </widget>

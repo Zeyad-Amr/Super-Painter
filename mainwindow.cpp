@@ -7,11 +7,22 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
-      drawpanel(new DrawPanel(this))
-{
+      drawpanel(new DrawPanel(this)){
     ui->setupUi(this);
-//    QMainWindow::showFullScreen();
-    setCentralWidget(drawpanel);
+
+
+    QWidget *window = new QWidget;
+    QVBoxLayout *vLayout = new QVBoxLayout(window);
+
+
+
+    vLayout->addWidget(drawpanel);
+
+
+    setCentralWidget(window);
+
+
+
 }
 
 MainWindow::~MainWindow()
@@ -20,8 +31,8 @@ MainWindow::~MainWindow()
     delete drawpanel;
 }
 
-int MainWindow::openDialog()
-{
+int MainWindow::openDialog(){
+
     QMessageBox dialog(QMessageBox::Question, tr("PaintQT"), tr("Do you want to save changes?"), QMessageBox::Yes | QMessageBox::No | QMessageBox::Cancel, this);
     dialog.setButtonText(QMessageBox::Yes, tr("Yes"));
     dialog.setButtonText(QMessageBox::No, tr("No"));
@@ -48,10 +59,9 @@ void MainWindow::on_actionPen_size_triggered()
 {
     bool correct = false;
 
-    int size = QInputDialog::getInt(this, "Set pen size", "Pen size", 1, 1, 50, 1, &correct);
+    int size = QInputDialog::getInt(this, "Set pen size", "Pen size",0 , 0, 50, 0, &correct);
 
-    if (correct)
-    {
+    if (correct && size!=0){
         drawpanel->setBrushWidth(size);
     }
 }
@@ -480,23 +490,23 @@ void MainWindow::on_actionResize_triggered()
 
 }
 
-void MainWindow::on_actionFill_with_coor_triggered()
-{
-    if(ui->actionFill_with_coor->isChecked() == true)
-    {
-        drawpanel->setIsFilling(true);
-    }
-    else if(ui->actionFill_with_coor->isChecked() == false)
-    {
-        drawpanel->setIsFilling(false);
-    }
-}
+//void MainWindow::on_actionFill_with_coor_triggered()
+//{
+//    if(ui->actionFill_with_coor->isChecked() == true)
+//    {
+//        drawpanel->setIsFilling(true);
+//    }
+//    else if(ui->actionFill_with_coor->isChecked() == false)
+//    {
+//        drawpanel->setIsFilling(false);
+//    }
+//}
 
-void MainWindow::on_actionFill_color_triggered()
-{
-    QColor customColor = QColorDialog::getColor(Qt::white, this, QString("Pick a fill color"), QColorDialog::ShowAlphaChannel);
-    drawpanel->setFillColor(customColor);
-}
+//void MainWindow::on_actionFill_color_triggered()
+//{
+//    QColor customColor = QColorDialog::getColor(Qt::white, this, QString("Pick a fill color"), QColorDialog::ShowAlphaChannel);
+//    drawpanel->setFillColor(customColor);
+//}
 
 void MainWindow::on_actionCut_triggered()
 {
@@ -535,6 +545,14 @@ void MainWindow::on_actionZoom_2_triggered()
 
         drawpanel->setImage(zoomedImage.scaled(newW, newH, Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
     }
+}
+
+
+
+
+void MainWindow::on_actionFull_Screen_triggered(){
+    isFullScreen() ? showNormal() : showFullScreen();
+
 }
 
 

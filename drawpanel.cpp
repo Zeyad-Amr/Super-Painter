@@ -21,16 +21,21 @@ void DrawPanel::start()
     drawPanel = QImage(this->size(), QImage::Format_RGB32);
     drawPanel.fill(Qt::white);
     setColor(Qt::black);
-    setFillColor(Qt::black);
-    setBrushWidth(1);
+
+    setBrushWidth(5);
     setPenStyle(Qt::SolidLine);
     setCapStyle(Qt::RoundCap);
     setJoinStyle(Qt::RoundJoin);
-    setIsLine(true);
+
     setIsCircle(false);
-    setIsTriangle(false);
     setIsRectangle(false);
-    setIsFilling(false);
+    setIsTriangle(false);
+    setIsLine(false);
+    setIsFilledCircle(false);
+    setIsFilledRectangle(false);
+    setIsFilledTriangle(false);
+    setIsErase(false);
+
     mousePressed = false;
 }
 
@@ -425,24 +430,14 @@ void DrawPanel::setIsErase(bool value)
     isErase= value;
 }
 
-bool DrawPanel::getIsFilling() const
+bool DrawPanel::getIsFullScreen() const
 {
-    return isFilling;
+    return isFullScreen;
 }
 
-void DrawPanel::setIsFilling(bool value)
+void DrawPanel::setIsFullScreen(bool value)
 {
-    isFilling = value;
-}
-
-QColor DrawPanel::getFillColor() const
-{
-    return fillColor;
-}
-
-void DrawPanel::setFillColor(const QColor &value)
-{
-    fillColor = value;
+    isFullScreen = value;
 }
 
 QImage DrawPanel::getCopyDrawing() const
