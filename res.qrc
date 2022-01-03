@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/add-file.png</file>
+        <file>images/broom.png</file>
+        <file>images/cancel.png</file>
+        <file>images/circle.png</file>
+        <file>images/circular-filled-shape.png</file>
+        <file>images/color-wheel.png</file>
+        <file>images/diagonal-line.png</file>
+        <file>images/eraser.png</file>
+        <file>images/floppy-disk.png</file>
+        <file>images/magnifying-glass (1).png</file>
+        <file>images/magnifying-glass.png</file>
+        <file>images/palette.png</file>
+        <file>images/rectangle (1).png</file>
+        <file>images/rectangle.png</file>
+        <file>images/redo.png</file>
+        <file>images/triangle (1).png</file>
+        <file>images/triangle.png</file>
+        <file>images/undo.png</file>
+        <file>images/width.png</file>
+    </qresource>
+</RCC>
