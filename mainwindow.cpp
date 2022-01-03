@@ -62,17 +62,44 @@ void MainWindow::on_actionErase_triggered()
     {
        drawpanel->setPrevColor(drawpanel->getColor());
        drawpanel->setColor(Qt::white);
-       drawpanel->setIsLine(true);
-       drawpanel->setIsCircle(false);
-       drawpanel->setIsTriangle(false);
-       drawpanel->setIsRectangle(false);
+
+       ui->actionCircle->setChecked(false);
        ui->actionRectangle->setChecked(false);
        ui->actionTriangle->setChecked(false);
-       ui->actionCircle->setChecked(false);
+       ui->actionLine->setChecked(false);
+       ui->actionFilledCircle->setChecked(false);
+       ui->actionFilledRectangle->setChecked(false);
+       ui->actionFilledTriangle->setChecked(false);
+       ui->actionErase->setChecked(true);
+       drawpanel->setIsCircle(false);
+       drawpanel->setIsRectangle(false);
+       drawpanel->setIsTriangle(false);
+       drawpanel->setIsLine(false);
+       drawpanel->setIsFilledCircle(false);
+       drawpanel->setIsFilledRectangle(false);
+       drawpanel->setIsFilledTriangle(false);
+       drawpanel->setIsErase(true);
     }
     if(ui->actionErase->isChecked() == false)
     {
         drawpanel->setColor(drawpanel->getPrevColor());
+
+        ui->actionCircle->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionTriangle->setChecked(false);
+        ui->actionLine->setChecked(false);
+        ui->actionFilledCircle->setChecked(false);
+        ui->actionFilledRectangle->setChecked(false);
+        ui->actionFilledTriangle->setChecked(false);
+        ui->actionErase->setChecked(false);
+        drawpanel->setIsCircle(false);
+        drawpanel->setIsRectangle(false);
+        drawpanel->setIsTriangle(false);
+        drawpanel->setIsLine(false);
+        drawpanel->setIsFilledCircle(false);
+        drawpanel->setIsFilledRectangle(false);
+        drawpanel->setIsFilledTriangle(false);
+        drawpanel->setIsErase(false);
     }
 }
 
@@ -81,18 +108,40 @@ void MainWindow::on_actionRectangle_triggered()
     if(ui->actionRectangle->isChecked() == true)
     {
         ui->actionCircle->setChecked(false);
+        ui->actionRectangle->setChecked(true);
         ui->actionTriangle->setChecked(false);
-        drawpanel->setIsRectangle(true);
+        ui->actionLine->setChecked(false);
+        ui->actionFilledCircle->setChecked(false);
+        ui->actionFilledRectangle->setChecked(false);
+        ui->actionFilledTriangle->setChecked(false);
+        ui->actionErase->setChecked(false);
         drawpanel->setIsCircle(false);
+        drawpanel->setIsRectangle(true);
         drawpanel->setIsTriangle(false);
         drawpanel->setIsLine(false);
+        drawpanel->setIsFilledCircle(false);
+        drawpanel->setIsFilledRectangle(false);
+        drawpanel->setIsFilledTriangle(false);
+        drawpanel->setIsErase(false);
     }
     if(ui->actionRectangle->isChecked() == false)
     {
-        drawpanel->setIsRectangle(false);
+        ui->actionCircle->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionTriangle->setChecked(false);
+        ui->actionLine->setChecked(false);
+        ui->actionFilledCircle->setChecked(false);
+        ui->actionFilledRectangle->setChecked(false);
+        ui->actionFilledTriangle->setChecked(false);
+        ui->actionErase->setChecked(false);
         drawpanel->setIsCircle(false);
+        drawpanel->setIsRectangle(false);
         drawpanel->setIsTriangle(false);
-        drawpanel->setIsLine(true);
+        drawpanel->setIsLine(false);
+        drawpanel->setIsFilledCircle(false);
+        drawpanel->setIsFilledRectangle(false);
+        drawpanel->setIsFilledTriangle(false);
+        drawpanel->setIsErase(false);
     }
 }
 
@@ -100,12 +149,22 @@ void MainWindow::on_actionCircle_triggered()
 {
     if(ui->actionCircle->isChecked() == true)
     {
+        ui->actionCircle->setChecked(true);
         ui->actionRectangle->setChecked(false);
         ui->actionTriangle->setChecked(false);
+        ui->actionLine->setChecked(false);
+        ui->actionFilledCircle->setChecked(false);
+        ui->actionFilledRectangle->setChecked(false);
+        ui->actionFilledTriangle->setChecked(false);
+        ui->actionErase->setChecked(false);
         drawpanel->setIsCircle(true);
         drawpanel->setIsRectangle(false);
         drawpanel->setIsTriangle(false);
         drawpanel->setIsLine(false);
+        drawpanel->setIsFilledCircle(false);
+        drawpanel->setIsFilledRectangle(false);
+        drawpanel->setIsFilledTriangle(false);
+        drawpanel->setIsErase(false);
     }
     if(ui->actionCircle->isChecked() == false)
     {
@@ -132,21 +191,223 @@ void MainWindow::on_actionTriangle_triggered()
 {
     if(ui->actionTriangle->isChecked() == true)
     {
-        ui->actionRectangle->setChecked(false);
         ui->actionCircle->setChecked(false);
-        drawpanel->setIsTriangle(true);
+        ui->actionRectangle->setChecked(false);
+        ui->actionTriangle->setChecked(true);
+        ui->actionLine->setChecked(false);
+        ui->actionFilledCircle->setChecked(false);
+        ui->actionFilledRectangle->setChecked(false);
+        ui->actionFilledTriangle->setChecked(false);
+        ui->actionErase->setChecked(false);
         drawpanel->setIsCircle(false);
         drawpanel->setIsRectangle(false);
+        drawpanel->setIsTriangle(true);
         drawpanel->setIsLine(false);
+        drawpanel->setIsFilledCircle(false);
+        drawpanel->setIsFilledRectangle(false);
+        drawpanel->setIsFilledTriangle(false);
+        drawpanel->setIsErase(false);
     }
     if(ui->actionTriangle->isChecked() == false)
     {
-        drawpanel->setIsRectangle(false);
+        ui->actionCircle->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionTriangle->setChecked(false);
+        ui->actionLine->setChecked(false);
+        ui->actionFilledCircle->setChecked(false);
+        ui->actionFilledRectangle->setChecked(false);
+        ui->actionFilledTriangle->setChecked(false);
+        ui->actionErase->setChecked(false);
         drawpanel->setIsCircle(false);
+        drawpanel->setIsRectangle(false);
         drawpanel->setIsTriangle(false);
-        drawpanel->setIsLine(true);
+        drawpanel->setIsLine(false);
+        drawpanel->setIsFilledCircle(false);
+        drawpanel->setIsFilledRectangle(false);
+        drawpanel->setIsFilledTriangle(false);
+        drawpanel->setIsErase(false);
     }
 }
+
+void MainWindow::on_actionLine_triggered()
+{
+    if(ui->actionLine->isChecked() == true)
+    {
+        ui->actionCircle->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionTriangle->setChecked(false);
+        ui->actionLine->setChecked(true);
+        ui->actionFilledCircle->setChecked(false);
+        ui->actionFilledRectangle->setChecked(false);
+        ui->actionFilledTriangle->setChecked(false);
+        ui->actionErase->setChecked(false);
+
+        drawpanel->setIsCircle(false);
+        drawpanel->setIsRectangle(false);
+        drawpanel->setIsTriangle(false);
+        drawpanel->setIsLine(true);
+        drawpanel->setIsFilledCircle(false);
+        drawpanel->setIsFilledRectangle(false);
+        drawpanel->setIsFilledTriangle(false);
+        drawpanel->setIsErase(false);
+    }
+    if(ui->actionLine->isChecked() == false)
+    {
+        ui->actionCircle->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionTriangle->setChecked(false);
+        ui->actionLine->setChecked(false);
+        ui->actionFilledCircle->setChecked(false);
+        ui->actionFilledRectangle->setChecked(false);
+        ui->actionFilledTriangle->setChecked(false);
+        ui->actionErase->setChecked(false);
+
+        drawpanel->setIsCircle(false);
+        drawpanel->setIsRectangle(false);
+        drawpanel->setIsTriangle(false);
+        drawpanel->setIsLine(false);
+        drawpanel->setIsFilledCircle(false);
+        drawpanel->setIsFilledRectangle(false);
+        drawpanel->setIsFilledTriangle(false);
+        drawpanel->setIsErase(false);
+    }
+}
+
+
+void MainWindow::on_actionFilledCircle_triggered()
+{
+    if(ui->actionFilledCircle->isChecked() == true)
+    {
+        ui->actionCircle->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionTriangle->setChecked(false);
+        ui->actionLine->setChecked(false);
+        ui->actionFilledCircle->setChecked(true);
+        ui->actionFilledRectangle->setChecked(false);
+        ui->actionFilledTriangle->setChecked(false);
+        ui->actionErase->setChecked(false);
+
+        drawpanel->setIsCircle(false);
+        drawpanel->setIsRectangle(false);
+        drawpanel->setIsTriangle(false);
+        drawpanel->setIsLine(false);
+        drawpanel->setIsFilledCircle(true);
+        drawpanel->setIsFilledRectangle(false);
+        drawpanel->setIsFilledTriangle(false);
+        drawpanel->setIsErase(false);
+    }
+    if(ui->actionFilledCircle->isChecked() == false)
+    {
+        ui->actionCircle->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionTriangle->setChecked(false);
+        ui->actionLine->setChecked(false);
+        ui->actionFilledCircle->setChecked(false);
+        ui->actionFilledRectangle->setChecked(false);
+        ui->actionFilledTriangle->setChecked(false);
+        ui->actionErase->setChecked(false);
+
+        drawpanel->setIsCircle(false);
+        drawpanel->setIsRectangle(false);
+        drawpanel->setIsTriangle(false);
+        drawpanel->setIsLine(false);
+        drawpanel->setIsFilledCircle(false);
+        drawpanel->setIsFilledRectangle(false);
+        drawpanel->setIsFilledTriangle(false);
+        drawpanel->setIsErase(false);
+    }
+}
+
+
+void MainWindow::on_actionFilledRectangle_triggered()
+{
+    if(ui->actionFilledRectangle->isChecked() == true)
+    {
+        ui->actionCircle->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionTriangle->setChecked(false);
+        ui->actionLine->setChecked(false);
+        ui->actionFilledCircle->setChecked(false);
+        ui->actionFilledRectangle->setChecked(true);
+        ui->actionFilledTriangle->setChecked(false);
+        ui->actionErase->setChecked(false);
+
+        drawpanel->setIsCircle(false);
+        drawpanel->setIsRectangle(false);
+        drawpanel->setIsTriangle(false);
+        drawpanel->setIsLine(false);
+        drawpanel->setIsFilledCircle(false);
+        drawpanel->setIsFilledRectangle(true);
+        drawpanel->setIsFilledTriangle(false);
+        drawpanel->setIsErase(false);
+    }
+    if(ui->actionFilledRectangle->isChecked() == false)
+    {
+        ui->actionCircle->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionTriangle->setChecked(false);
+        ui->actionLine->setChecked(false);
+        ui->actionFilledCircle->setChecked(false);
+        ui->actionFilledRectangle->setChecked(false);
+        ui->actionFilledTriangle->setChecked(false);
+        ui->actionErase->setChecked(false);
+
+        drawpanel->setIsCircle(false);
+        drawpanel->setIsRectangle(false);
+        drawpanel->setIsTriangle(false);
+        drawpanel->setIsLine(false);
+        drawpanel->setIsFilledCircle(false);
+        drawpanel->setIsFilledRectangle(false);
+        drawpanel->setIsFilledTriangle(false);
+        drawpanel->setIsErase(false);
+    }
+}
+
+
+void MainWindow::on_actionFilledTriangle_triggered()
+{
+    if(ui->actionFilledTriangle->isChecked() == true)
+    {
+        ui->actionCircle->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionTriangle->setChecked(false);
+        ui->actionLine->setChecked(false);
+        ui->actionFilledCircle->setChecked(false);
+        ui->actionFilledRectangle->setChecked(false);
+        ui->actionFilledTriangle->setChecked(true);
+        ui->actionErase->setChecked(false);
+
+        drawpanel->setIsCircle(false);
+        drawpanel->setIsRectangle(false);
+        drawpanel->setIsTriangle(false);
+        drawpanel->setIsLine(false);
+        drawpanel->setIsFilledCircle(false);
+        drawpanel->setIsFilledRectangle(false);
+        drawpanel->setIsFilledTriangle(true);
+        drawpanel->setIsErase(false);
+    }
+    if(ui->actionFilledTriangle->isChecked() == false)
+    {
+        ui->actionCircle->setChecked(false);
+        ui->actionRectangle->setChecked(false);
+        ui->actionTriangle->setChecked(false);
+        ui->actionLine->setChecked(false);
+        ui->actionFilledCircle->setChecked(false);
+        ui->actionFilledRectangle->setChecked(false);
+        ui->actionFilledTriangle->setChecked(false);
+        ui->actionErase->setChecked(false);
+
+        drawpanel->setIsCircle(false);
+        drawpanel->setIsRectangle(false);
+        drawpanel->setIsTriangle(false);
+        drawpanel->setIsLine(false);
+        drawpanel->setIsFilledCircle(false);
+        drawpanel->setIsFilledRectangle(false);
+        drawpanel->setIsFilledTriangle(false);
+        drawpanel->setIsErase(false);
+    }
+}
+
 
 void MainWindow::on_actionOpen_triggered()
 {
@@ -275,3 +536,6 @@ void MainWindow::on_actionZoom_2_triggered()
         drawpanel->setImage(zoomedImage.scaled(newW, newH, Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
     }
 }
+
+
+

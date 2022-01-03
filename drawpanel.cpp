@@ -97,35 +97,42 @@ void DrawPanel::paintEvent(QPaintEvent *event)
         wasMousePressed = true;
 
         if (getIsCircle()){
-//            QRect circle = QRect(firstPoint, lastPoint);
             qreal R= sqrt(pow(firstPoint.rx()-lastPoint.rx(),2)+pow(firstPoint.ry()-lastPoint.ry(),2));
             QPainter circlePainter(this);
             circlePainter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
             circlePainter.drawEllipse(firstPoint,R,R);
-            if(isFilling)
-            {
-                QBrush fillbrush(fillColor);
-                QPainterPath path;
-                path.addEllipse(firstPoint,R,R);
-                painter.fillPath(path, fillbrush);
-            }
-        }
-        else if (getIsRectangle())
-        {
+
+
+
+        }else if (getIsFilledCircle()){
+            qreal R= sqrt(pow(firstPoint.rx()-lastPoint.rx(),2)+pow(firstPoint.ry()-lastPoint.ry(),2));
+            QPainter circlePainter(this);
+            circlePainter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
+            circlePainter.drawEllipse(firstPoint,R,R);
+
+            QBrush fillbrush(currentColor);
+            QPainterPath path;
+            path.addEllipse(firstPoint,R,R);
+            painter.fillPath(path, fillbrush);
+
+        }else if (getIsRectangle()){
             QRect rect = QRect(firstPoint, lastPoint);
             QPainter rectanglePainter(this);
             rectanglePainter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
             rectanglePainter.drawRect(rect);
-            if (isFilling)
-            {
-                QBrush fillbrush(fillColor);
-                QPainterPath path;
-                path.addRoundedRect(rect,brushWidth, brushWidth);
-                painter.fillPath(path,fillbrush);
-            }
-        }
-        else if (getIsTriangle())
-        {
+
+        }else if (getIsFilledRectangle()){
+            QRect rect = QRect(firstPoint, lastPoint);
+            QPainter rectanglePainter(this);
+            rectanglePainter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
+            rectanglePainter.drawRect(rect);
+
+            QBrush fillbrush(currentColor);
+            QPainterPath path;
+            path.addRoundedRect(rect,brushWidth, brushWidth);
+            painter.fillPath(path,fillbrush);
+
+        }else if (getIsTriangle()){
             QPainter trianglePainter(this);
             trianglePainter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
             QPoint *points = new QPoint[3];
@@ -135,66 +142,78 @@ void DrawPanel::paintEvent(QPaintEvent *event)
 
             QPolygon polygon;
             polygon<<points[0]<<points[1]<<points[2];
+            trianglePainter.drawPolygon(polygon);
 
+        }else if (getIsFilledTriangle()){
+            QPainter trianglePainter(this);
+            trianglePainter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
+            QPoint *points = new QPoint[3];
+            points[0] = QPoint(firstPoint.x(), lastPoint.y());
+            points[1] = QPoint(((firstPoint.x() + lastPoint.x()) / 2), firstPoint.y());
+            points[2] = QPoint(lastPoint);
 
-            /*
+            QPolygon polygon;
+            polygon<<points[0]<<points[1]<<points[2];
+            trianglePainter.drawPolygon(polygon);
+
+            QBrush fillbrush(currentColor);
+            QPainterPath path;
+            path.addPolygon(polygon);
+            painter.fillPath(path,fillbrush);
+
+        }else if (getIsLine()){
+            QPainter linePainter(this);
+            linePainter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
+            QPoint *points = new QPoint[3];
+
             points[0] = QPoint(firstPoint.x(), firstPoint.y());
             points[1] = QPoint(lastPoint.x() , lastPoint.y());
 
-
             QPolygon polygon;
             polygon<<points[0]<<points[1];
-*/
-            trianglePainter.drawPolygon(polygon);
-            if (isFilling)
-            {
-                QBrush fillbrush(fillColor);
-                QPainterPath path;
-                path.addPolygon(polygon);
-                painter.fillPath(path,fillbrush);
-            }
-        }
-        else
-        {
+
+            linePainter.drawPolygon(polygon);
+
+        }/*else{
             QPainter pencilPainter(&drawPanel);
             pencilPainter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
             pencilPainter.drawLine(lastPoint, firstPoint);
 
             firstPoint = lastPoint;
-        }
-    }
-    else if(wasMousePressed)
+        }*/
+    }else if(wasMousePressed)
     {
         QPainter painter(&drawPanel);
         painter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
 
         if (getIsCircle())
         {
-//            QRect circle = QRect(firstPoint, lastPoint)
             qreal R= sqrt(pow(firstPoint.rx()-lastPoint.rx(),2)+pow(firstPoint.ry()-lastPoint.ry(),2));
             painter.drawEllipse(firstPoint,R,R);
-            if(isFilling)
-            {
-                QBrush fillbrush(fillColor);
-                QPainterPath path;
-                path.addEllipse(firstPoint,R,R);
-                painter.fillPath(path, fillbrush);
-            }
-        }
-        else if (getIsRectangle())
-        {
+
+        }else if (getIsFilledCircle()){
+            qreal R= sqrt(pow(firstPoint.rx()-lastPoint.rx(),2)+pow(firstPoint.ry()-lastPoint.ry(),2));
+            painter.drawEllipse(firstPoint,R,R);
+
+            QBrush fillbrush(currentColor);
+            QPainterPath path;
+            path.addEllipse(firstPoint,R,R);
+            painter.fillPath(path, fillbrush);
+
+        }else if (getIsRectangle()){
             QRect rect = QRect(firstPoint, lastPoint);
             painter.drawRect(rect);
-            if (isFilling)
-            {
-                QBrush fillbrush(fillColor);
-                QPainterPath path;
-                path.addRoundedRect(rect,brushWidth, brushWidth);
-                painter.fillPath(path,fillbrush);
-            }
-        }
-        else if (getIsTriangle())
-        {
+
+        }else if (getIsFilledRectangle()){
+            QRect rect = QRect(firstPoint, lastPoint);
+            painter.drawRect(rect);
+
+            QBrush fillbrush(currentColor);
+            QPainterPath path;
+            path.addRoundedRect(rect,brushWidth, brushWidth);
+            painter.fillPath(path,fillbrush);
+
+        }else if (getIsTriangle()){
             QPoint *points = new QPoint[3];
             points[0] = QPoint(firstPoint.x(), lastPoint.y());
             points[1] = QPoint(((firstPoint.x() + lastPoint.x()) / 2), firstPoint.y());
@@ -203,18 +222,33 @@ void DrawPanel::paintEvent(QPaintEvent *event)
             QPolygon polygon;
             polygon<<points[0]<<points[1]<<points[2];
             painter.drawPolygon(polygon);
-            if (isFilling)
-            {
-                QBrush fillbrush(fillColor);
-                QPainterPath path;
-                path.addPolygon(polygon);
-                painter.fillPath(path,fillbrush);
-            }
-        }
-        else
-        {
+
+        }else if (getIsFilledTriangle()){
+        QPoint *points = new QPoint[3];
+        points[0] = QPoint(firstPoint.x(), lastPoint.y());
+        points[1] = QPoint(((firstPoint.x() + lastPoint.x()) / 2), firstPoint.y());
+        points[2] = QPoint(lastPoint);
+
+        QPolygon polygon;
+        polygon<<points[0]<<points[1]<<points[2];
+        painter.drawPolygon(polygon);
+        QBrush fillbrush(currentColor);
+        QPainterPath path;
+        path.addPolygon(polygon);
+        painter.fillPath(path,fillbrush);
+
+    }else if (getIsLine()){
+        QPoint *points = new QPoint[3];
+        points[0] = QPoint(firstPoint.x(), firstPoint.y());
+        points[1] = QPoint(lastPoint.x() , lastPoint.y());
+
+        QPolygon polygon;
+        polygon<<points[0]<<points[1];
+        painter.drawPolygon(polygon);
+
+    }/* else{
             painter.drawImage(dirtyRect, drawPanel, dirtyRect);
-        }
+        }*/
 
         wasMousePressed = false;
     }

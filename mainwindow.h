@@ -34,11 +34,13 @@ private slots:
     void on_actionPen_color_triggered();
     void on_actionSave_triggered();
     void on_actionPen_size_triggered();
+
     void on_actionErase_triggered();
 
     void on_actionRectangle_triggered();
     void on_actionCircle_triggered();
     void on_actionTriangle_triggered();
+
     void on_actionOpen_triggered();
     void on_actionNew_triggered();
     void on_actionClose_triggered();
@@ -51,5 +53,9 @@ private slots:
     void on_actionAbout_PaintQT_triggered();
     void on_actionZoom_2_triggered();
 
+    void on_actionLine_triggered();
+    void on_actionFilledCircle_triggered();
+    void on_actionFilledRectangle_triggered();
+    void on_actionFilledTriangle_triggered();
 };
 #endif // MAINWINDOW_H

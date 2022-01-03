@@ -7,7 +7,7 @@ Zoom::Zoom(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->lineEdit->setText(QString::number(100));
-//    ui->lineEdit->setValidator( new QIntValidator(10, 200, this) );
+    ui->lineEdit->setValidator(new QIntValidator(10, 200, this));
 }
 
 Zoom::~Zoom()
@@ -15,7 +15,8 @@ Zoom::~Zoom()
     delete ui;
 }
 
-int Zoom::getZoom() const
-{
+int Zoom::getZoom() const{
+
     return ui->lineEdit->text().toInt();
+
 }
