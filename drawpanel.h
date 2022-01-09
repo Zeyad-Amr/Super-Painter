@@ -5,6 +5,7 @@
 #include <QMouseEvent>
 #include <QPainter>
 #include <QFileDialog>
+#include <QStack>
 
 class DrawPanel : public QWidget
 {
@@ -31,7 +32,7 @@ public:
     void clear();
 
     void setBrushWidth (int setBrushWidth);
-
+    int getBrushWidth ();
     void setColor(QColor setColor);
     QColor getColor();
 
@@ -77,18 +78,25 @@ public:
     QImage getCopyDrawing() const;
     void setCopyDrawing(const QImage &value);
 
+    void addCommand(QImage newImage);
+    void redoCommand();
+    void undoCommand();
+
+
 private:
     QImage drawPanel;
     QImage copyDrawing;
-    QPoint lastPoint;
-    QPoint firstPoint;
+    QPointF lastPoint;
+    QPointF firstPoint;
     QColor currentColor;
     QColor prevColor;
     Qt::PenStyle penStyle;
     Qt::PenCapStyle capStyle;
     Qt::PenJoinStyle joinStyle;
 
+
     int brushWidth;
+    bool status=false;
     bool isDrawing;
     bool isRectangle;
     bool isCircle;
@@ -102,6 +110,11 @@ private:
     bool isFullScreen;
 
     bool mousePressed;
+
+    QStack<QImage> mainStack;
+    QStack<QImage> undoRedoStack;
+
+
 };
 
 #endif // DRAWPANEL_H

@@ -23,6 +23,7 @@ SOURCES += \
     resize.cpp \
     zoom.cpp
 
+
 HEADERS += \
     about.h \
     drawpanel.h \

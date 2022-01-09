@@ -4,6 +4,17 @@
 #include <QColorDialog>
 #include <QScrollArea>
 
+
+
+#include <QAction>
+#include <QGraphicsView>
+#include <QMenu>
+#include <QMenuBar>
+#include <QMessageBox>
+#include <QUndoView>
+
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::MainWindow),
@@ -14,14 +25,9 @@ MainWindow::MainWindow(QWidget *parent)
     QWidget *window = new QWidget;
     QVBoxLayout *vLayout = new QVBoxLayout(window);
 
-
-
     vLayout->addWidget(drawpanel);
 
-
     setCentralWidget(window);
-
-
 
 }
 
@@ -59,7 +65,8 @@ void MainWindow::on_actionPen_size_triggered()
 {
     bool correct = false;
 
-    int size = QInputDialog::getInt(this, "Set pen size", "Pen size",0 , 0, 50, 0, &correct);
+    int brushWidth=drawpanel->getBrushWidth();
+    int size = QInputDialog::getInt(this, "Set pen size", "Pen size",brushWidth , 0, 50, 1, &correct);
 
     if (correct && size!=0){
         drawpanel->setBrushWidth(size);
@@ -556,4 +563,14 @@ void MainWindow::on_actionFull_Screen_triggered(){
 }
 
 
+void MainWindow::on_actionUndo_triggered()
+{
+    drawpanel->undoCommand();
+}
+
+
+void MainWindow::on_actionRedo_triggered()
+{
+     drawpanel->redoCommand();
+}
 

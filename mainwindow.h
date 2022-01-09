@@ -12,7 +12,19 @@
 
 #include <QDebug>
 
+
+#include <QMainWindow>
+
 QT_BEGIN_NAMESPACE
+class QAction;
+class QToolBar;
+class QMenu;
+class QUndoStack;
+class QUndoView;
+QT_END_NAMESPACE
+class DiagramScene;
+class DiagramItem;
+
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
@@ -26,11 +38,16 @@ public:
 
     int openDialog();
 
+
 private:
     Ui::MainWindow *ui;
     DrawPanel *drawpanel;
 
+
+
+
 private slots:
+
     void on_actionPen_color_triggered();
     void on_actionSave_triggered();
     void on_actionPen_size_triggered();
@@ -58,5 +75,7 @@ private slots:
     void on_actionFilledTriangle_triggered();
     void on_actionFull_Screen_triggered();
 
+    void on_actionUndo_triggered();
+    void on_actionRedo_triggered();
 };
 #endif // MAINWINDOW_H

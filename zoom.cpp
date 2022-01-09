@@ -3,15 +3,13 @@
 
 Zoom::Zoom(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::Zoom)
-{
+    ui(new Ui::Zoom){
     ui->setupUi(this);
     ui->lineEdit->setText(QString::number(100));
     ui->lineEdit->setValidator(new QIntValidator(10, 200, this));
 }
 
-Zoom::~Zoom()
-{
+Zoom::~Zoom(){
     delete ui;
 }
 

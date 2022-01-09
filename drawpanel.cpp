@@ -19,6 +19,7 @@ DrawPanel::~DrawPanel() {}
 void DrawPanel::start()
 {
     drawPanel = QImage(this->size(), QImage::Format_RGB32);
+
     drawPanel.fill(Qt::white);
     setColor(Qt::black);
 
@@ -36,7 +37,9 @@ void DrawPanel::start()
     setIsFilledTriangle(false);
     setIsErase(false);
 
+
     mousePressed = false;
+    addCommand(getImage());
 }
 
 
@@ -81,12 +84,15 @@ void DrawPanel::mouseMoveEvent(QMouseEvent *event)
 
 void DrawPanel::mouseReleaseEvent(QMouseEvent *event)
 {
-    if (event->button() == Qt::LeftButton && isDrawing)
-    {
+
+    if (event->button() == Qt::LeftButton && isDrawing){
         isDrawing = false;
         mousePressed = false;
     }
+
+   status=true;
     update();
+
 }
 
 
@@ -94,7 +100,7 @@ void DrawPanel::paintEvent(QPaintEvent *event)
 {
     static bool wasMousePressed = false;
 
-    QRect dirtyRect = event->rect();
+    QRectF dirtyRect = event->rect();
     QPainter painter(this);
     painter.drawImage(dirtyRect, drawPanel, dirtyRect);
 
@@ -106,7 +112,6 @@ void DrawPanel::paintEvent(QPaintEvent *event)
             QPainter circlePainter(this);
             circlePainter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
             circlePainter.drawEllipse(firstPoint,R,R);
-
 
 
         }else if (getIsFilledCircle()){
@@ -121,13 +126,13 @@ void DrawPanel::paintEvent(QPaintEvent *event)
             painter.fillPath(path, fillbrush);
 
         }else if (getIsRectangle()){
-            QRect rect = QRect(firstPoint, lastPoint);
+            QRectF rect = QRectF(firstPoint, lastPoint);
             QPainter rectanglePainter(this);
             rectanglePainter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
             rectanglePainter.drawRect(rect);
 
         }else if (getIsFilledRectangle()){
-            QRect rect = QRect(firstPoint, lastPoint);
+            QRectF rect = QRectF(firstPoint, lastPoint);
             QPainter rectanglePainter(this);
             rectanglePainter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
             rectanglePainter.drawRect(rect);
@@ -140,24 +145,24 @@ void DrawPanel::paintEvent(QPaintEvent *event)
         }else if (getIsTriangle()){
             QPainter trianglePainter(this);
             trianglePainter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
-            QPoint *points = new QPoint[3];
-            points[0] = QPoint(firstPoint.x(), lastPoint.y());
-            points[1] = QPoint(((firstPoint.x() + lastPoint.x()) / 2), firstPoint.y());
-            points[2] = QPoint(lastPoint);
+            QPointF *points = new QPointF[3];
+            points[0] = QPointF(firstPoint.x(), lastPoint.y());
+            points[1] = QPointF(((firstPoint.x() + lastPoint.x()) / 2), firstPoint.y());
+            points[2] = QPointF(lastPoint);
 
-            QPolygon polygon;
+            QPolygonF polygon;
             polygon<<points[0]<<points[1]<<points[2];
             trianglePainter.drawPolygon(polygon);
 
         }else if (getIsFilledTriangle()){
             QPainter trianglePainter(this);
             trianglePainter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
-            QPoint *points = new QPoint[3];
-            points[0] = QPoint(firstPoint.x(), lastPoint.y());
-            points[1] = QPoint(((firstPoint.x() + lastPoint.x()) / 2), firstPoint.y());
-            points[2] = QPoint(lastPoint);
+            QPointF *points = new QPointF[3];
+            points[0] = QPointF(firstPoint.x(), lastPoint.y());
+            points[1] = QPointF(((firstPoint.x() + lastPoint.x()) / 2), firstPoint.y());
+            points[2] = QPointF(lastPoint);
 
-            QPolygon polygon;
+            QPolygonF polygon;
             polygon<<points[0]<<points[1]<<points[2];
             trianglePainter.drawPolygon(polygon);
 
@@ -169,12 +174,12 @@ void DrawPanel::paintEvent(QPaintEvent *event)
         }else if (getIsLine()){
             QPainter linePainter(this);
             linePainter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
-            QPoint *points = new QPoint[3];
+            QPointF *points = new QPointF[3];
 
-            points[0] = QPoint(firstPoint.x(), firstPoint.y());
-            points[1] = QPoint(lastPoint.x() , lastPoint.y());
+            points[0] = QPointF(firstPoint.x(), firstPoint.y());
+            points[1] = QPointF(lastPoint.x() , lastPoint.y());
 
-            QPolygon polygon;
+            QPolygonF polygon;
             polygon<<points[0]<<points[1];
 
             linePainter.drawPolygon(polygon);
@@ -186,8 +191,8 @@ void DrawPanel::paintEvent(QPaintEvent *event)
 
             firstPoint = lastPoint;
         }*/
-    }else if(wasMousePressed)
-    {
+    }else if(wasMousePressed){
+
         QPainter painter(&drawPanel);
         painter.setPen(QPen(currentColor,brushWidth,penStyle,capStyle,joinStyle));
 
@@ -206,11 +211,11 @@ void DrawPanel::paintEvent(QPaintEvent *event)
             painter.fillPath(path, fillbrush);
 
         }else if (getIsRectangle()){
-            QRect rect = QRect(firstPoint, lastPoint);
+            QRectF rect = QRectF(firstPoint, lastPoint);
             painter.drawRect(rect);
 
         }else if (getIsFilledRectangle()){
-            QRect rect = QRect(firstPoint, lastPoint);
+            QRectF rect = QRectF(firstPoint, lastPoint);
             painter.drawRect(rect);
 
             QBrush fillbrush(currentColor);
@@ -219,22 +224,23 @@ void DrawPanel::paintEvent(QPaintEvent *event)
             painter.fillPath(path,fillbrush);
 
         }else if (getIsTriangle()){
-            QPoint *points = new QPoint[3];
-            points[0] = QPoint(firstPoint.x(), lastPoint.y());
-            points[1] = QPoint(((firstPoint.x() + lastPoint.x()) / 2), firstPoint.y());
-            points[2] = QPoint(lastPoint);
+            QPointF *points = new QPointF[3];
+            points[0] = QPointF(firstPoint.x(), lastPoint.y());
+            points[1] = QPointF(((firstPoint.x() + lastPoint.x()) / 2), firstPoint.y());
+            points[2] = QPointF(lastPoint);
 
-            QPolygon polygon;
+            QPolygonF polygon;
             polygon<<points[0]<<points[1]<<points[2];
             painter.drawPolygon(polygon);
 
         }else if (getIsFilledTriangle()){
-        QPoint *points = new QPoint[3];
-        points[0] = QPoint(firstPoint.x(), lastPoint.y());
-        points[1] = QPoint(((firstPoint.x() + lastPoint.x()) / 2), firstPoint.y());
-        points[2] = QPoint(lastPoint);
 
-        QPolygon polygon;
+        QPointF *points = new QPointF[3];
+        points[0] = QPointF(firstPoint.x(), lastPoint.y());
+        points[1] = QPointF(((firstPoint.x() + lastPoint.x()) / 2), firstPoint.y());
+        points[2] = QPointF(lastPoint);
+
+        QPolygonF polygon;
         polygon<<points[0]<<points[1]<<points[2];
         painter.drawPolygon(polygon);
         QBrush fillbrush(currentColor);
@@ -243,11 +249,11 @@ void DrawPanel::paintEvent(QPaintEvent *event)
         painter.fillPath(path,fillbrush);
 
     }else if (getIsLine()){
-        QPoint *points = new QPoint[3];
-        points[0] = QPoint(firstPoint.x(), firstPoint.y());
-        points[1] = QPoint(lastPoint.x() , lastPoint.y());
+        QPointF *points = new QPointF[3];
+        points[0] = QPointF(firstPoint.x(), firstPoint.y());
+        points[1] = QPointF(lastPoint.x() , lastPoint.y());
 
-        QPolygon polygon;
+        QPolygonF polygon;
         polygon<<points[0]<<points[1];
         painter.drawPolygon(polygon);
 
@@ -256,8 +262,17 @@ void DrawPanel::paintEvent(QPaintEvent *event)
         }*/
 
         wasMousePressed = false;
+
     }
+
+    if(status&&!wasMousePressed){
+        addCommand(getImage());
+        undoRedoStack.clear();
+        status=false;
+    }
+
     update();
+
 }
 
 
@@ -296,7 +311,7 @@ void DrawPanel::resize(int w, int h)
     QPixmap newImage(QSize(w, h));
     newImage.fill(Qt::white);
     QPainter painter(&newImage);
-    painter.drawImage(QPoint(0, 0), drawPanel);
+    painter.drawImage(QPointF(0, 0), drawPanel);
     setImage(newImage.toImage());
     update();
 }
@@ -457,10 +472,42 @@ void DrawPanel::setColor(QColor setColor)
 
 void DrawPanel::setBrushWidth(int setBrushWidth)
 {
-    brushWidth = setBrushWidth;
+     setPrevColor(getColor());
+     brushWidth = setBrushWidth;
+     setColor(getPrevColor());
 }
 
+int DrawPanel::getBrushWidth()
+{
+   return brushWidth;
+}
 QColor DrawPanel::getColor()
 {
     return currentColor;
+}
+
+void DrawPanel::addCommand(QImage newImage){
+    mainStack.push(newImage);
+}
+
+void DrawPanel::undoCommand(){
+
+  if(mainStack.length()!=1){
+      QImage removedImage= mainStack.top();
+      mainStack.pop();
+      undoRedoStack.push(removedImage);
+      setImage(removedImage);
+
+  }
+
+}
+void DrawPanel::redoCommand(){
+
+    if(!undoRedoStack.isEmpty()){
+        QImage removedImage= undoRedoStack.top();
+        undoRedoStack.pop();
+        mainStack.push(removedImage);
+        setImage(removedImage);
+    }
+
 }
