@@ -77,5 +77,6 @@ private slots:
 
     void on_actionUndo_triggered();
     void on_actionRedo_triggered();
+     void on_actionSearch_triggered();
 };
 #endif // MAINWINDOW_H
