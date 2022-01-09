@@ -21,6 +21,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     resize.cpp \
+    shape.cpp \
     zoom.cpp
 
 
@@ -29,6 +30,7 @@ HEADERS += \
     drawpanel.h \
     mainwindow.h \
     resize.h \
+    shape.h \
     zoom.h
 
 FORMS += \

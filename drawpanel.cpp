@@ -88,11 +88,13 @@ void DrawPanel::mouseReleaseEvent(QMouseEvent *event)
     if (event->button() == Qt::LeftButton && isDrawing){
         isDrawing = false;
         mousePressed = false;
+
     }
 
-   status=true;
-    update();
+     update();
 
+     addCommand(getImage());
+     redoStack.clear();
 }
 
 
@@ -265,11 +267,6 @@ void DrawPanel::paintEvent(QPaintEvent *event)
 
     }
 
-    if(status&&!wasMousePressed){
-        addCommand(getImage());
-        undoRedoStack.clear();
-        status=false;
-    }
 
     update();
 
@@ -319,7 +316,10 @@ void DrawPanel::resize(int w, int h)
 void DrawPanel::clear()
 {
     drawPanel.fill(Qt::white);
+
     update();
+    addCommand(getImage());
+    redoStack.clear();
 }
 
 QColor DrawPanel::getPrevColor() const
@@ -487,15 +487,15 @@ QColor DrawPanel::getColor()
 }
 
 void DrawPanel::addCommand(QImage newImage){
-    mainStack.push(newImage);
+    undoStack.push(newImage);
 }
 
 void DrawPanel::undoCommand(){
 
-  if(mainStack.length()!=1){
-      QImage removedImage= mainStack.top();
-      mainStack.pop();
-      undoRedoStack.push(removedImage);
+  if(undoStack.length()!=1){
+      QImage removedImage= undoStack.top();
+      undoStack.pop();
+      redoStack.push(removedImage);
       setImage(removedImage);
 
   }
@@ -503,10 +503,10 @@ void DrawPanel::undoCommand(){
 }
 void DrawPanel::redoCommand(){
 
-    if(!undoRedoStack.isEmpty()){
-        QImage removedImage= undoRedoStack.top();
-        undoRedoStack.pop();
-        mainStack.push(removedImage);
+    if(!redoStack.isEmpty()){
+        QImage removedImage= redoStack.top();
+        redoStack.pop();
+        undoStack.push(removedImage);
         setImage(removedImage);
     }
 

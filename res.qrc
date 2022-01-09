@@ -20,5 +20,6 @@
         <file>images/undo.png</file>
         <file>images/width.png</file>
         <file>images/full-screen.png</file>
+        <file>images/magnifier.png</file>
     </qresource>
 </RCC>

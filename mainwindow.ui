@@ -17,9 +17,9 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>210</width>
+      <x>10</x>
+      <y>30</y>
+      <width>160</width>
       <height>80</height>
      </rect>
     </property>
@@ -119,6 +119,8 @@
    <addaction name="actionRedo"/>
    <addaction name="separator"/>
    <addaction name="actionFull_Screen"/>
+   <addaction name="separator"/>
+   <addaction name="actionSearch"/>
    <addaction name="separator"/>
   </widget>
   <widget class="QToolBar" name="toolBar_2">
@@ -467,6 +469,18 @@
    </property>
    <property name="shortcut">
     <string>F11</string>
+   </property>
+  </action>
+  <action name="actionSearch">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/magnifier.png</normaloff>:/images/magnifier.png</iconset>
+   </property>
+   <property name="text">
+    <string>Search</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
    </property>
   </action>
  </widget>

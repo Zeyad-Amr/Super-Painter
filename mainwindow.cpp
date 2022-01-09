@@ -574,3 +574,9 @@ void MainWindow::on_actionRedo_triggered()
      drawpanel->redoCommand();
 }
 
+
+void MainWindow::on_actionSearch_triggered()
+{
+
+}
+

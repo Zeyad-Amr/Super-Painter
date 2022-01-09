@@ -96,7 +96,7 @@ private:
 
 
     int brushWidth;
-    bool status=false;
+
     bool isDrawing;
     bool isRectangle;
     bool isCircle;
@@ -111,8 +111,8 @@ private:
 
     bool mousePressed;
 
-    QStack<QImage> mainStack;
-    QStack<QImage> undoRedoStack;
+    QStack<QImage> undoStack;
+    QStack<QImage> redoStack;
 
 
 };
