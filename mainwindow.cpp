@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include "searchdialog.h"
+
 #include <QColorDialog>
 #include <QScrollArea>
 
@@ -577,6 +579,9 @@ void MainWindow::on_actionRedo_triggered()
 
 void MainWindow::on_actionSearch_triggered()
 {
+   SearchDialog searchdialogue;
+   //searchdialogue.setModal(true);
+   searchdialogue.exec();
 
 }
 
