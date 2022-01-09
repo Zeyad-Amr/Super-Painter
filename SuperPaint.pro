@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     about.cpp \
+    circle.cpp \
     drawpanel.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -28,6 +29,7 @@ SOURCES += \
 
 HEADERS += \
     about.h \
+    circle.h \
     drawpanel.h \
     mainwindow.h \
     resize.h \
