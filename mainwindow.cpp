@@ -6,8 +6,6 @@
 #include <QColorDialog>
 #include <QScrollArea>
 
-
-
 #include <QAction>
 #include <QGraphicsView>
 #include <QMenu>
