@@ -2,15 +2,24 @@
 
 Shape::Shape()
 {
-//   shapes.push_front(this);
+
 }
 
 double Shape::getPerimeter(){
-    return perimeter;
+    return 0;
 }
+
+double Shape::getarea(){
+    return 0;
+}
+
 
 void Shape::setType(QString t){
     type=t;
+}
+
+QString Shape::getType(){
+    return type;
 }
 
 void Shape::setTitle(QString tit){

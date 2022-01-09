@@ -111,7 +111,6 @@
    <addaction name="separator"/>
    <addaction name="actionPen_size"/>
    <addaction name="separator"/>
-   <addaction name="actionZoom"/>
    <addaction name="separator"/>
    <addaction name="actionZoom_2"/>
    <addaction name="separator"/>
@@ -121,6 +120,8 @@
    <addaction name="actionFull_Screen"/>
    <addaction name="separator"/>
    <addaction name="actionSearch"/>
+   <addaction name="separator"/>
+   <addaction name="actionSort"/>
    <addaction name="separator"/>
   </widget>
   <widget class="QToolBar" name="toolBar_2">
@@ -481,6 +482,21 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="actionSort">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/images/sort-down.png</normaloff>:/images/sort-down.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sort</string>
+   </property>
+   <property name="toolTip">
+    <string>Sort</string>
+   </property>
+   <property name="shortcut">
+    <string>S</string>
    </property>
   </action>
  </widget>

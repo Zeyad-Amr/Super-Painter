@@ -9,7 +9,7 @@ class Shape
 {
 public:
     Shape();
-//   static QVector<Shape> shapes;
+
    virtual double getPerimeter();
    virtual double getarea();
 
@@ -32,8 +32,6 @@ private:
 
     QString title;
     QString type;
-    double perimeter;
-    double area;
     QColor color;
     int thickness;
     QPointF location;

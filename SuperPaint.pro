@@ -21,6 +21,7 @@ SOURCES += \
     drawpanel.cpp \
     main.cpp \
     mainwindow.cpp \
+    rectangle.cpp \
     resize.cpp \
     searchdialog.cpp \
     shape.cpp \
@@ -32,6 +33,7 @@ HEADERS += \
     circle.h \
     drawpanel.h \
     mainwindow.h \
+    rectangle.h \
     resize.h \
     searchdialog.h \
     shape.h \

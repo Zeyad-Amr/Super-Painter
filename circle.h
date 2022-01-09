@@ -5,16 +5,13 @@
 class Circle:Shape
 {
 public:
-    Circle();
+    Circle(double raduis,QString tit,QColor col,int thickness,QPointF location);
 
     void setRaduis(double raduis);
     double getRaduis();
 
     double getPerimeter() override;
     double getarea() override;
-
-
-    void setType() override;
 
 
 
