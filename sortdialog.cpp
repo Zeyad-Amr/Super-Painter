@@ -23,11 +23,13 @@ SortDialog::SortDialog(QWidget *parent) :
         }
         // Initializing the Figure Values
 
-
+            table->setGeometry(0,0,750,400);
 
         Shape s;
         std::vector<Shape> shapes=s.shapes;
-        shapes=sort(shapes);
+        if(shapes.size()!=0){
+            shapes=sort(shapes);
+        }
 
         for(int i=0;i<shapes.size();i++){
 
@@ -67,7 +69,7 @@ SortDialog::SortDialog(QWidget *parent) :
 
             //H7eader Properties
             table->horizontalHeader()->setVisible(true);
-            table->horizontalHeader()->setDefaultSectionSize(150);
+            table->horizontalHeader()->setDefaultSectionSize(100);
             table->horizontalHeader()->setStretchLastSection(true);
 
 
@@ -89,10 +91,11 @@ std::vector<Shape> SortDialog::sort(std::vector<Shape> a){
         for (j = 0; j < shapes.size()-i-1; j++)
             if (shapes[j].getPerimeter() > shapes[j+1].getPerimeter())
                 swap(&shapes[j], &shapes[j+1]);
-
         return shapes;
 
 }
+
+
 void SortDialog::swap(Shape *xp,Shape *yp){
 
            Shape temp ;
