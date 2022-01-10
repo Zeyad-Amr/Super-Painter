@@ -162,7 +162,7 @@
   <action name="actionOpen">
    <property name="icon">
     <iconset resource="res.qrc">
-     <normaloff>:/SuperPaint/images/open.png</normaloff>:/SuperPaint/images/open.png</iconset>
+     <normaloff>:/images/open.png</normaloff>:/images/open.png</iconset>
    </property>
    <property name="text">
     <string>Open</string>

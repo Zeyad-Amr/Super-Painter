@@ -22,6 +22,7 @@
         <file>images/full-screen.png</file>
         <file>images/magnifier.png</file>
         <file>images/sort-down.png</file>
-        <file>../../SuperPaint/images/open.png</file>
+        <file>images/painting.png</file>
+        <file>images/open.png</file>
     </qresource>
 </RCC>
