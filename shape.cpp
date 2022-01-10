@@ -7,6 +7,7 @@ Shape::Shape()
 
 int Shape::index=0;
 std::vector<Shape> Shape::shapes;
+std::vector<Shape> Shape::Undoshapes;
 
 double Shape::getPerimeter(){
     return perimeter;

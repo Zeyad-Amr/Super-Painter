@@ -524,7 +524,9 @@ void DrawPanel::undoCommand(){
       undoStack.pop();
       redoStack.push(removedImage);
       Shape s;
-//      s.
+      Shape last=s.shapes[s.shapes.size()-1];
+      s.shapes.pop_back();
+      s.Undoshapes.push_back(last);
       setImage(removedImage);
 
   }
@@ -536,6 +538,12 @@ void DrawPanel::redoCommand(){
         QImage removedImage= redoStack.top();
         redoStack.pop();
         undoStack.push(removedImage);
+
+        Shape s;
+        Shape last=s.Undoshapes[s.Undoshapes.size()-1];
+        s.Undoshapes.pop_back();
+        s.shapes.push_back(last);
+
         setImage(removedImage);
     }
 

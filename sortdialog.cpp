@@ -23,7 +23,7 @@ SortDialog::SortDialog(QWidget *parent) :
         }
         // Initializing the Figure Values
 
-            table->setGeometry(0,0,750,400);
+            table->setGeometry(0,0,850,400);
 
         Shape s;
         std::vector<Shape> shapes=s.shapes;
