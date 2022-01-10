@@ -6,6 +6,8 @@
 #include <QPainter>
 #include <QFileDialog>
 #include <QStack>
+#include "shape.h"
+#include <vector>
 
 class DrawPanel : public QWidget
 {
@@ -113,6 +115,7 @@ private:
 
     QStack<QImage> undoStack;
     QStack<QImage> redoStack;
+    std::vector<Shape> shapes;
 
 
 };

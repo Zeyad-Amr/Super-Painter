@@ -1,15 +1,16 @@
 #include "rectangle.h"
 
 
-Rectangle::Rectangle(double length,double width,QString tit,QColor col,int thickness,QPointF location){
+Rectangle::Rectangle(double length,double width,QString tit,QColor col,int thickness,QPointF location,bool isFilled){
 
-    setType("circle");
+    setType("rectangle");
     setTitle(tit);
     setColor(col);
     setThickness(thickness);
     setLocation(location);
     setWidth(width);
     setLength(length);
+    setIsFilled(isFilled);
 
 }
 

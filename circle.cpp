@@ -1,6 +1,6 @@
 #include "circle.h"
 
-Circle::Circle(double r,QString tit,QColor col,int thick,QPointF loc)
+Circle::Circle(double r,QString tit,QColor col,int thick,QPointF loc,bool isFilled)
 {
     setType("circle");
     setTitle(tit);
@@ -8,6 +8,9 @@ Circle::Circle(double r,QString tit,QColor col,int thick,QPointF loc)
     setThickness(thick);
     setLocation(loc);
     setRaduis(r);
+    setIsFilled(isFilled);
+    count=0;
+    count++;
 
 }
 

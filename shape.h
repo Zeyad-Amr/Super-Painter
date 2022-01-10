@@ -28,6 +28,9 @@ public:
    virtual void setLocation(QPointF point);
    virtual QPointF getLocation();
 
+   virtual bool getIsFilled();
+    virtual void setIsFilled(bool isfilled);
+
 private:
 
     QString title;
@@ -35,6 +38,7 @@ private:
     QColor color;
     int thickness;
     QPointF location;
+    bool isFilled;
 
 };
 
