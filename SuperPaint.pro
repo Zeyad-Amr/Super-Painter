@@ -26,7 +26,11 @@ SOURCES += \
     resize.cpp \
     searchdialog.cpp \
     shape.cpp \
+<<<<<<< HEAD
+    sortdialog.cpp \
+=======
     triangle.cpp \
+>>>>>>> 3b78fbc63e1f67d8fb1cdfef32187688a8288c26
     zoom.cpp
 
 
@@ -40,7 +44,11 @@ HEADERS += \
     resize.h \
     searchdialog.h \
     shape.h \
+<<<<<<< HEAD
+    sortdialog.h \
+=======
     triangle.h \
+>>>>>>> 3b78fbc63e1f67d8fb1cdfef32187688a8288c26
     zoom.h
 
 FORMS += \
@@ -48,6 +56,7 @@ FORMS += \
     mainwindow.ui \
     resize.ui \
     searchdialog.ui \
+    sortdialog.ui \
     zoom.ui
 
 # Default rules for deployment.
