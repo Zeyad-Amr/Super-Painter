@@ -523,6 +523,8 @@ void DrawPanel::undoCommand(){
       QImage removedImage= undoStack.top();
       undoStack.pop();
       redoStack.push(removedImage);
+      Shape s;
+//      s.
       setImage(removedImage);
 
   }

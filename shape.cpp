@@ -5,7 +5,7 @@ Shape::Shape()
 
 }
 
-
+int Shape::index=0;
 std::vector<Shape> Shape::shapes;
 
 double Shape::getPerimeter(){
@@ -25,6 +25,8 @@ void Shape::setarea(double a){
 }
 
 void Shape::setType(QString t){
+    index++;
+    order=index;
     type=t;
 }
 
@@ -67,3 +69,5 @@ bool Shape::getIsFilled(){
 void Shape::setIsFilled(bool isf){
     isFilled=isf;
 }
+
+

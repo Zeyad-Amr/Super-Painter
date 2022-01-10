@@ -13,9 +13,9 @@ SortDialog::SortDialog(QWidget *parent) :
         QTableWidget *table=new QTableWidget(this) ;
 
         QStringList TableLabel;
-        TableLabel<<"Name"<<"Type"<<"Perimter"<<"Area"<<"Thickness"<<"Color"<<"Location";
+        TableLabel<<"Order"<<"Name"<<"Type"<<"Perimter"<<"Area"<<"Thickness"<<"Color"<<"Location";
 
-        table->setColumnCount(7);
+        table->setColumnCount(8);
         table->setHorizontalHeaderLabels(TableLabel);
         while (table->rowCount() > 0)
         {
@@ -37,13 +37,14 @@ SortDialog::SortDialog(QWidget *parent) :
             table->insertRow(table->rowCount());
 
             // Setting the row values
-            table->setItem(table->rowCount()-1, 0, new QTableWidgetItem(shapes[i].getTitle()));
-            table->setItem(table->rowCount()-1, 1, new QTableWidgetItem(shapes[i].getType()));
-            table->setItem(table->rowCount()-1, 2, new QTableWidgetItem(QString::number(shapes[i].getPerimeter())));
-            table->setItem(table->rowCount()-1, 3, new QTableWidgetItem(QString::number(shapes[i].getarea())));
-            table->setItem(table->rowCount()-1, 4, new QTableWidgetItem(QString::number(shapes[i].getThickness())));
-            table->setItem(table->rowCount()-1, 5, new QTableWidgetItem(shapes[i].getColor().name()));
-            table->setItem(table->rowCount()-1, 6, new QTableWidgetItem("("+QString::number(shapes[i].getLocation().rx())+","+QString::number(s.shapes[i].getLocation().ry())+")"));
+            table->setItem(table->rowCount()-1, 0, new QTableWidgetItem(QString::number(shapes[i].order)));
+            table->setItem(table->rowCount()-1, 1, new QTableWidgetItem(shapes[i].getTitle()));
+            table->setItem(table->rowCount()-1, 2, new QTableWidgetItem(shapes[i].getType()));
+            table->setItem(table->rowCount()-1, 3, new QTableWidgetItem(QString::number(shapes[i].getPerimeter())));
+            table->setItem(table->rowCount()-1, 4, new QTableWidgetItem(QString::number(shapes[i].getarea())));
+            table->setItem(table->rowCount()-1, 5, new QTableWidgetItem(QString::number(shapes[i].getThickness())));
+            table->setItem(table->rowCount()-1, 6, new QTableWidgetItem(shapes[i].getColor().name()));
+            table->setItem(table->rowCount()-1, 7, new QTableWidgetItem("("+QString::number(shapes[i].getLocation().rx())+","+QString::number(s.shapes[i].getLocation().ry())+")"));
 
 
 

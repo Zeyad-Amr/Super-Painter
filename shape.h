@@ -14,6 +14,9 @@ public:
 
 
    static std::vector<Shape> shapes;
+   static std::vector<Shape> Undoshapes;
+
+
 
    virtual double getPerimeter();
    virtual double getarea();
@@ -37,9 +40,12 @@ public:
    virtual QPointF getLocation();
 
    virtual bool getIsFilled();
-    virtual void setIsFilled(bool isfilled);
+   virtual void setIsFilled(bool isfilled);
+   static int index;
+   int order;
 
 private:
+
 
     QString title;
     QString type;
@@ -49,6 +55,7 @@ private:
     bool isFilled;
     double perimeter;
     double area;
+
 
 };
 

@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
     QVBoxLayout *vLayout = new QVBoxLayout(window);
 
     vLayout->addWidget(drawpanel);
-    setWindowIcon(QIcon(":/images/color-wheel.png"));
+    setWindowIcon(QIcon(":/images/painting.png"));
     setCentralWidget(window);
 
 }
