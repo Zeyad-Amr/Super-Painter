@@ -1,5 +1,6 @@
 #include "sortdialog.h"
 #include "ui_sortdialog.h"
+#include "shape.h"
 
 SortDialog::SortDialog(QWidget *parent) :
     QDialog(parent),
@@ -12,112 +13,95 @@ SortDialog::SortDialog(QWidget *parent) :
         QTableWidget *table=new QTableWidget(this) ;
 
         QStringList TableLabel;
-        TableLabel<<"Name"<<"Type"<<"Perimter"<<"LineWeight"<<"Color";
+        TableLabel<<"Name"<<"Type"<<"Perimter"<<"Area"<<"Thickness"<<"Color"<<"Location";
 
-        table->setColumnCount(5);
+        table->setColumnCount(7);
         table->setHorizontalHeaderLabels(TableLabel);
         while (table->rowCount() > 0)
         {
             table->removeRow(0);
         }
         // Initializing the Figure Values
-        QString name="aa";
-        QString Type= "bb";
-        QString Perimeter = "cc";
-        QString linewidth = "dd";
-        QString linecolor ="ff";
-
-
-        // Insert New row in the table
-        table->insertRow(table->rowCount());
-
-        // Setting the row values
-        table->setItem(table->rowCount()-1, 0, new QTableWidgetItem(name));
-        table->setItem(table->rowCount()-1, 1, new QTableWidgetItem(Type));
-        table->setItem(table->rowCount()-1, 2, new QTableWidgetItem(Perimeter));
-        table->setItem(table->rowCount()-1, 3, new QTableWidgetItem(linewidth));
-        table->setItem(table->rowCount()-1, 4, new QTableWidgetItem(linecolor));
 
 
 
-        table->setStyleSheet(
-                    "QTableWidget{"
-                    "background-color: #C0C0C0;"
-                    "alternate-background-color: #606060;"
-                    "selection-background-color: #282828;"
-                    "}");
-        table->setAlternatingRowColors(true);
+        Shape s;
+        std::vector<Shape> shapes=s.shapes;
+        shapes=sort(shapes);
 
-        //Cell Items Properties
-        table->setSelectionMode(QAbstractItemView::SingleSelection);
-        table->setSelectionBehavior(QAbstractItemView::SelectRows);
-        table->setTextElideMode(Qt::ElideRight);
+        for(int i=0;i<shapes.size();i++){
 
-        //Table Properties
-        table->setShowGrid(true);
-        table->setGridStyle(Qt::DotLine);
-        table->setSortingEnabled(true);
-        table->setCornerButtonEnabled(true);
+            // Insert New row in the table
+            table->insertRow(table->rowCount());
 
-        //Header Properties
-        table->horizontalHeader()->setVisible(true);
-        table->horizontalHeader()->setDefaultSectionSize(150);
-        table->horizontalHeader()->setStretchLastSection(true);
+            // Setting the row values
+            table->setItem(table->rowCount()-1, 0, new QTableWidgetItem(shapes[i].getTitle()));
+            table->setItem(table->rowCount()-1, 1, new QTableWidgetItem(shapes[i].getType()));
+            table->setItem(table->rowCount()-1, 2, new QTableWidgetItem(QString::number(shapes[i].getPerimeter())));
+            table->setItem(table->rowCount()-1, 3, new QTableWidgetItem(QString::number(shapes[i].getarea())));
+            table->setItem(table->rowCount()-1, 4, new QTableWidgetItem(QString::number(shapes[i].getThickness())));
+            table->setItem(table->rowCount()-1, 5, new QTableWidgetItem(shapes[i].getColor().name()));
+            table->setItem(table->rowCount()-1, 6, new QTableWidgetItem("("+QString::number(shapes[i].getLocation().rx())+","+QString::number(s.shapes[i].getLocation().ry())+")"));
 
 
 
-//        for(auto* item:*shapesMemory){
-//            // Initializing the Figure Values
-//            QString name= item->Shape::getname();
-//            QString Type= item->Shape::getshapeType();
-//            QString Perimeter = QString::number(item->Shape::get_perimeter());
-//            QString linewidth = QString::number(item->Shape::pen.width());
-//            QString linecolor = (item->Shape::pen.color()).name();
+
+            table->setStyleSheet(
+                        "QTableWidget{"
+                        "background-color: #C0C0C0;"
+                        "alternate-background-color: #606060;"
+                        "selection-background-color: #282828;"
+                        "}");
+            table->setAlternatingRowColors(true);
+
+            //Cell Items Properties
+            table->setSelectionMode(QAbstractItemView::SingleSelection);
+            table->setSelectionBehavior(QAbstractItemView::SelectRows);
+            table->setTextElideMode(Qt::ElideRight);
+
+            //Table Properties
+            table->setShowGrid(true);
+            table->setGridStyle(Qt::DotLine);
+            table->setSortingEnabled(true);
+            table->setCornerButtonEnabled(true);
+
+            //H7eader Properties
+            table->horizontalHeader()->setVisible(true);
+            table->horizontalHeader()->setDefaultSectionSize(150);
+            table->horizontalHeader()->setStretchLastSection(true);
 
 
-//            // Insert New row in the table
-//            table->insertRow(table->rowCount());
-
-//            // Setting the row values
-//            table->setItem(table->rowCount()-1, 0, new QTableWidgetItem(name));
-//            table->setItem(table->rowCount()-1, 1, new QTableWidgetItem(Type));
-//            table->setItem(table->rowCount()-1, 2, new QTableWidgetItem(Perimeter));
-//            table->setItem(table->rowCount()-1, 3, new QTableWidgetItem(linewidth));
-//            table->setItem(table->rowCount()-1, 4, new QTableWidgetItem(linecolor));
-
-
-
-//            table->setStyleSheet(
-//                        "QTableWidget{"
-//                        "background-color: #C0C0C0;"
-//                        "alternate-background-color: #606060;"
-//                        "selection-background-color: #282828;"
-//                        "}");
-//            table->setAlternatingRowColors(true);
-
-//            //Cell Items Properties
-//            table->setSelectionMode(QAbstractItemView::SingleSelection);
-//            table->setSelectionBehavior(QAbstractItemView::SelectRows);
-//            table->setTextElideMode(Qt::ElideRight);
-
-//            //Table Properties
-//            table->setShowGrid(true);
-//            table->setGridStyle(Qt::DotLine);
-//            table->setSortingEnabled(true);
-//            table->setCornerButtonEnabled(true);
-
-//            //Header Properties
-//            table->horizontalHeader()->setVisible(true);
-//            table->horizontalHeader()->setDefaultSectionSize(150);
-//            table->horizontalHeader()->setStretchLastSection(true);
-
-
-//        }
+        }
 
     }
 
 
 }
+
+std::vector<Shape> SortDialog::sort(std::vector<Shape> a){
+    std::vector<Shape> shapes=a;
+
+
+    int i, j;
+        for (i = 0; i < shapes.size()-1; i++)
+
+        // Last i elements are already in place
+        for (j = 0; j < shapes.size()-i-1; j++)
+            if (shapes[j].getPerimeter() > shapes[j+1].getPerimeter())
+                swap(&shapes[j], &shapes[j+1]);
+
+        return shapes;
+
+}
+void SortDialog::swap(Shape *xp,Shape *yp){
+
+           Shape temp ;
+           temp= *xp;
+           *xp = *yp;
+           *yp = temp;
+
+}
+
 
 SortDialog::~SortDialog()
 {

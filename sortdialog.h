@@ -4,6 +4,7 @@
 #include <QTableWidget>
 #include <QHeaderView>
 #include <QGraphicsScene>
+#include "shape.h"
 namespace Ui {
 class SortDialog;
 }
@@ -15,6 +16,8 @@ class SortDialog : public QDialog
 public:
     explicit SortDialog(QWidget *parent = nullptr);
     ~SortDialog();
+    std::vector<Shape> sort(std::vector<Shape> a);
+    void swap(Shape *xp,Shape *yp);
 
 private:
     Ui::SortDialog *ui;

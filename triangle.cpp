@@ -4,7 +4,7 @@
 Triangle::Triangle(double base,double side,QColor col,int thickness,QPointF location,bool isFilled){
 
     counter++;
-        QString tit="Tr"+QString::number(counter);
+        QString tit="T"+QString::number(counter);
 
     setType("Triangle");
     setTitle(tit);

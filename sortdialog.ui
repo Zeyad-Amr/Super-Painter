@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>402</width>
-    <height>250</height>
+    <width>500</width>
+    <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QTableWidget" name="SortTable">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>0</x>
      <y>0</y>
-     <width>381</width>
-     <height>241</height>
+     <width>501</width>
+     <height>301</height>
     </rect>
    </property>
   </widget>
