@@ -5,14 +5,24 @@ Shape::Shape()
 
 }
 
+
+std::vector<Shape> Shape::shapes;
+
 double Shape::getPerimeter(){
-    return 0;
+    return perimeter;
 }
 
 double Shape::getarea(){
-    return 0;
+    return area;
 }
 
+void Shape::setPerimeter(double per){
+    perimeter=per;
+}
+
+void Shape::setarea(double a){
+   area=a;
+}
 
 void Shape::setType(QString t){
     type=t;

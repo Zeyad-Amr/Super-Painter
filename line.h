@@ -5,16 +5,15 @@
 class Line:public Shape
 {
 public:
-    Line(double length,QString tit,QColor col,int thickness,QPointF location);
+    Line(double length,QColor col,int thickness,QPointF location);
 
     void setLength(double length);
     double getLength();
 
 
-    double getPerimeter() override;
-    double getarea() override;
 
 
+    static int counter;
 
 
 

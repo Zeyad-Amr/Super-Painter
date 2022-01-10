@@ -13,6 +13,7 @@ class DrawPanel : public QWidget
 {
     Q_OBJECT
 public:
+
     explicit DrawPanel(QWidget *parent = nullptr);
     ~DrawPanel() override;
 
@@ -95,7 +96,7 @@ private:
     Qt::PenStyle penStyle;
     Qt::PenCapStyle capStyle;
     Qt::PenJoinStyle joinStyle;
-     Shape *s;
+
 
 
     int brushWidth;
@@ -116,6 +117,7 @@ private:
 
     QStack<QImage> undoStack;
     QStack<QImage> redoStack;
+    Shape *s;
 
 
 

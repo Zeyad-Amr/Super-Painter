@@ -5,18 +5,17 @@
 class Rectangle:public Shape
 {
 public:
-    Rectangle(double length,double width,QString tit,QColor col,int thickness,QPointF location,bool isFilled);
+    Rectangle(double length,double width,QColor col,int thickness,QPointF location,bool isFilled);
 
     void setLength(double length);
     double getLength();
     void setWidth(double width);
     double getWidth();
 
-    double getPerimeter() override;
-    double getarea() override;
 
 
 
+    static int counter;
 
 
 private:

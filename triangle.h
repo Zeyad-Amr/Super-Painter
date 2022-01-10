@@ -5,17 +5,16 @@
 class Triangle:public Shape
 {
 public:
-    Triangle(double base,double side,QString tit,QColor col,int thickness,QPointF location,bool isFilled);
+    Triangle(double base,double side,QColor col,int thickness,QPointF location,bool isFilled);
 
     void setBase(double length);
     double getBase();
     void setSide(double width);
     double getSide();
 
-    double getPerimeter() override;
-    double getarea() override;
 
 
+    static int counter;
 
 
 

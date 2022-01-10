@@ -6,15 +6,20 @@
 #include <QPainter>
 
 
+
 class Shape
 {
 public:
     Shape();
 
-    std::vector<Shape> shapes;
+
+   static std::vector<Shape> shapes;
 
    virtual double getPerimeter();
    virtual double getarea();
+
+   virtual void setPerimeter(double p);
+   virtual void setarea(double a);
 
    virtual void setTitle(QString title);
    virtual QString getTitle();
@@ -42,6 +47,8 @@ private:
     int thickness;
     QPointF location;
     bool isFilled;
+    double perimeter;
+    double area;
 
 };
 

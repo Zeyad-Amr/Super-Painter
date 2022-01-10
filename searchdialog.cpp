@@ -2,6 +2,7 @@
 #include "ui_searchdialog.h"
 #include <QMessageBox>
 #include<QString>
+#include "circle.h"
 SearchDialog::SearchDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SearchDialog)
@@ -21,11 +22,26 @@ void SearchDialog::on_pushButton_clicked()
 
    Shape s;
 
- int index=  search(s.shapes,name,s.shapes.size());
+ int index= search(s.shapes,name,s.shapes.size());
 
- Shape myShape=s.shapes[index];
+ if(index!=-1){
 
-   QMessageBox::information(this,"Search Result","Name:\t"+myShape.getTitle()+"\nType:\t"+myShape.getType()+"\nPerimeter:\t"+QString::number(myShape.getPerimeter())+"\nArea:\t"+QString::number(myShape.getarea())+"\nColor:\t"+myShape.getColor().name()+"\nThickmess:\t"+QString::number(myShape.getThickness())+"\nLocation:\t("+QString::number(myShape.getLocation().rx())+","+QString::number(myShape.getLocation().ry())+")");
+         Shape myShape=s.shapes[index];
+      QString isFilled="";
+      if(myShape.getIsFilled()){
+          isFilled="Filled ";
+      }
+QMessageBox messageBox;
+
+            QMessageBox::information(this,"Search Result","Name: "+myShape.getTitle()+"\nType: "+isFilled+myShape.getType()+"\nPerimeter: "+QString::number(myShape.getPerimeter())+"\nArea: "+QString::number(myShape.getarea())+"\nColor "+myShape.getColor().name()+"\nThickmess: "+QString::number(myShape.getThickness())+"\nLocation: ("+QString::number(myShape.getLocation().rx())+","+QString::number(myShape.getLocation().ry())+")");
+
+//     }
+
+ }else{
+     QMessageBox messageBox;
+     messageBox.critical(0,"Error","Sorry, this shape not found");
+     messageBox.setFixedSize(500,200);
+ }
 
 }
 

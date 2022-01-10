@@ -1,26 +1,34 @@
 #include "circle.h"
 
-Circle::Circle(double r,QString tit,QColor col,int thick,QPointF loc,bool isFilled)
+Circle::Circle(double r,QColor col,int thick,QPointF loc,bool isFilled)
 {
-    setType("circle");
+    counter++;
+    QString tit="C"+QString::number(counter);
+    setType("Circle");
     setTitle(tit);
     setColor(col);
     setThickness(thick);
     setLocation(loc);
     setRaduis(r);
+    setPerimeter(r*2*3.14);
+    setarea(r*r*3.14);
     setIsFilled(isFilled);
 
 
 
+
 }
 
-double Circle::getPerimeter(){
-    return getRaduis()*2*3.14;
-}
 
-double Circle::getarea(){
-    return getRaduis()*getRaduis()*3.14;
-}
+int Circle::counter=0;
+
+//double Circle::getPerimeter(){
+//    return getRaduis()*2*3.14;
+//}
+
+//double Circle::getarea(){
+//    return getRaduis()*getRaduis()*3.14;
+//}
 
 double Circle::getRaduis(){
     return raduis;

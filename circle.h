@@ -5,15 +5,16 @@
 class Circle:public Shape
 {
 public:
-    Circle(double raduis,QString tit,QColor col,int thickness,QPointF location,bool isFilled);
-
+    Circle(double raduis,QColor col,int thickness,QPointF location,bool isFilled);
+//    Circle();
     void setRaduis(double raduis);
     double getRaduis();
 
-    double getPerimeter() override;
-    double getarea() override;
 
 
+
+
+    static int counter;
 
 private:
     double raduis;

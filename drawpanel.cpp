@@ -10,7 +10,6 @@
 #include"rectangle.h"
 #include"triangle.h"
 #include"line.h"
-#include"shape.h"
 
 
 DrawPanel::DrawPanel(QWidget *parent) : QWidget(parent),s(new Shape())
@@ -210,7 +209,7 @@ void DrawPanel::paintEvent(QPaintEvent *event)
             qreal R= sqrt(pow(firstPoint.rx()-lastPoint.rx(),2)+pow(firstPoint.ry()-lastPoint.ry(),2));
             painter.drawEllipse(firstPoint,R,R);
 
-            Shape circle= Circle(R,"Circle 1",currentColor,brushWidth,firstPoint,false);
+            Shape circle= Circle(R/10,currentColor,brushWidth,firstPoint,false);
             s->shapes.push_back(circle);
 
         }else if (getIsFilledCircle()){
@@ -222,14 +221,14 @@ void DrawPanel::paintEvent(QPaintEvent *event)
             path.addEllipse(firstPoint,R,R);
             painter.fillPath(path, fillbrush);
 
-            Shape circle= Circle(R,"Circle 1",currentColor,brushWidth,firstPoint,true);
+            Shape circle= Circle(R/10,currentColor,brushWidth,firstPoint,true);
             s->shapes.push_back(circle);
 
         }else if (getIsRectangle()){
             QRectF rect = QRectF(firstPoint, lastPoint);
             painter.drawRect(rect);
 
-            Shape rectangle= Rectangle(abs(firstPoint.rx()-lastPoint.rx()),abs(firstPoint.ry()-lastPoint.ry()),"Rectangle 1",currentColor,brushWidth,firstPoint,false);
+            Shape rectangle= Rectangle(abs(firstPoint.rx()-lastPoint.rx())/10,abs(firstPoint.ry()-lastPoint.ry())/10,currentColor,brushWidth,firstPoint,false);
             s->shapes.push_back(rectangle);
 
         }else if (getIsFilledRectangle()){
@@ -241,7 +240,7 @@ void DrawPanel::paintEvent(QPaintEvent *event)
             path.addRoundedRect(rect,brushWidth, brushWidth);
             painter.fillPath(path,fillbrush);
 
-            Shape rectangle= Rectangle(abs(firstPoint.rx()-lastPoint.rx()),abs(firstPoint.ry()-lastPoint.ry()),"Rectangle 1",currentColor,brushWidth,firstPoint,true);
+            Shape rectangle= Rectangle(abs(firstPoint.rx()-lastPoint.rx())/10,abs(firstPoint.ry()-lastPoint.ry())/10,currentColor,brushWidth,firstPoint,true);
             s->shapes.push_back(rectangle);
 
         }else if (getIsTriangle()){
@@ -253,7 +252,7 @@ void DrawPanel::paintEvent(QPaintEvent *event)
             QPolygonF polygon;
             polygon<<points[0]<<points[1]<<points[2];
             painter.drawPolygon(polygon);
-            Shape triangle= Triangle(sqrt(pow(points[0].rx()-points[2].rx(),2)+pow(points[0].ry()-points[2].ry(),2)),sqrt(pow(points[1].rx()-points[2].rx(),2)+pow(points[1].ry()-points[2].ry(),2)),"Triangle 1",currentColor,brushWidth,firstPoint,false);
+            Shape triangle= Triangle(sqrt(pow(points[0].rx()-points[2].rx(),2)+pow(points[0].ry()-points[2].ry(),2))/10,sqrt(pow(points[1].rx()-points[2].rx(),2)+pow(points[1].ry()-points[2].ry(),2))/10,currentColor,brushWidth,firstPoint,false);
             s->shapes.push_back(triangle);
 
         }else if (getIsFilledTriangle()){
@@ -271,7 +270,7 @@ void DrawPanel::paintEvent(QPaintEvent *event)
         path.addPolygon(polygon);
         painter.fillPath(path,fillbrush);
 
-        Shape triangle= Triangle(sqrt(pow(points[0].rx()-points[2].rx(),2)+pow(points[0].ry()-points[2].ry(),2)),sqrt(pow(points[1].rx()-points[2].rx(),2)+pow(points[1].ry()-points[2].ry(),2)),"Triangle 1",currentColor,brushWidth,firstPoint,true);
+        Shape triangle= Triangle(sqrt(pow(points[0].rx()-points[2].rx(),2)+pow(points[0].ry()-points[2].ry(),2))/10,sqrt(pow(points[1].rx()-points[2].rx(),2)+pow(points[1].ry()-points[2].ry(),2))/10,currentColor,brushWidth,firstPoint,true);
         s->shapes.push_back(triangle);
 
     }else if (getIsLine()){
@@ -284,7 +283,7 @@ void DrawPanel::paintEvent(QPaintEvent *event)
         painter.drawPolygon(polygon);
 
 
-        Shape line= Line(sqrt(pow(points[0].rx()-points[1].rx(),2)+pow(points[0].ry()-points[1].ry(),2)),"Line 1",currentColor,brushWidth,firstPoint);
+        Shape line= Line(sqrt(pow(points[0].rx()-points[1].rx(),2)+pow(points[0].ry()-points[1].ry(),2))/10,currentColor,brushWidth,firstPoint);
         s->shapes.push_back(line);
 
     }/* else{
