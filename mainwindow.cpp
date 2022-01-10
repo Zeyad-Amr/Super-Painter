@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include "searchdialog.h"
-
+#include "sortdialog.h"
 #include <QColorDialog>
 #include <QScrollArea>
 
@@ -586,6 +586,11 @@ void MainWindow::on_actionSearch_triggered()
 
 void MainWindow::on_actionSort_triggered()
 {
+   SortDialog sortdialog;
+   sortdialog.exec();
+
+
+
 
 }
 

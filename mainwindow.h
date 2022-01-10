@@ -61,6 +61,7 @@ private slots:
     void on_actionOpen_triggered();
     void on_actionNew_triggered();
     void on_actionClose_triggered();
+    void on_actionSort_triggered();
 
     void on_actionResize_triggered();
 
