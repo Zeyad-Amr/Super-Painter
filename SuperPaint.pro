@@ -19,12 +19,14 @@ SOURCES += \
     about.cpp \
     circle.cpp \
     drawpanel.cpp \
+    line.cpp \
     main.cpp \
     mainwindow.cpp \
     rectangle.cpp \
     resize.cpp \
     searchdialog.cpp \
     shape.cpp \
+    triangle.cpp \
     zoom.cpp
 
 
@@ -32,11 +34,13 @@ HEADERS += \
     about.h \
     circle.h \
     drawpanel.h \
+    line.h \
     mainwindow.h \
     rectangle.h \
     resize.h \
     searchdialog.h \
     shape.h \
+    triangle.h \
     zoom.h
 
 FORMS += \

@@ -50,3 +50,10 @@ void Shape::setLocation(QPointF point){
 QPointF Shape::getLocation(){
     return location;
 }
+
+bool Shape::getIsFilled(){
+    return isFilled;
+}
+void Shape::setIsFilled(bool isf){
+    isFilled=isf;
+}

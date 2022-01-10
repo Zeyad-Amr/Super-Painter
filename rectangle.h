@@ -2,10 +2,10 @@
 #define RECTANGLE_H
 #include "shape.h"
 
-class Rectangle:Shape
+class Rectangle:public Shape
 {
 public:
-    Rectangle(double length,double width,QString tit,QColor col,int thickness,QPointF location);
+    Rectangle(double length,double width,QString tit,QColor col,int thickness,QPointF location,bool isFilled);
 
     void setLength(double length);
     double getLength();
@@ -17,9 +17,12 @@ public:
 
 
 
+
+
 private:
     double length;
     double width;
+    bool isFilled;
 
 
 };

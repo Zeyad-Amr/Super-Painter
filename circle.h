@@ -2,10 +2,10 @@
 #define CIRCLE_H
 
 #include <shape.h>
-class Circle:Shape
+class Circle:public Shape
 {
 public:
-    Circle(double raduis,QString tit,QColor col,int thickness,QPointF location);
+    Circle(double raduis,QString tit,QColor col,int thickness,QPointF location,bool isFilled);
 
     void setRaduis(double raduis);
     double getRaduis();
