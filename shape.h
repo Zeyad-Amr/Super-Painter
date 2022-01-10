@@ -5,10 +5,13 @@
 #include<QString>
 #include <QPainter>
 
+
 class Shape
 {
 public:
     Shape();
+
+    std::vector<Shape> shapes;
 
    virtual double getPerimeter();
    virtual double getarea();

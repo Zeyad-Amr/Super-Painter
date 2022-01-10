@@ -9,8 +9,8 @@ Circle::Circle(double r,QString tit,QColor col,int thick,QPointF loc,bool isFill
     setLocation(loc);
     setRaduis(r);
     setIsFilled(isFilled);
-    count=0;
-    count++;
+
+
 
 }
 

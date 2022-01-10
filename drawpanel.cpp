@@ -13,7 +13,7 @@
 #include"shape.h"
 
 
-DrawPanel::DrawPanel(QWidget *parent) : QWidget(parent)
+DrawPanel::DrawPanel(QWidget *parent) : QWidget(parent),s(new Shape())
 {
     start();
 }
@@ -210,10 +210,8 @@ void DrawPanel::paintEvent(QPaintEvent *event)
             qreal R= sqrt(pow(firstPoint.rx()-lastPoint.rx(),2)+pow(firstPoint.ry()-lastPoint.ry(),2));
             painter.drawEllipse(firstPoint,R,R);
 
-
-
             Shape circle= Circle(R,"Circle 1",currentColor,brushWidth,firstPoint,false);
-            shapes.push_back(circle);
+            s->shapes.push_back(circle);
 
         }else if (getIsFilledCircle()){
             qreal R= sqrt(pow(firstPoint.rx()-lastPoint.rx(),2)+pow(firstPoint.ry()-lastPoint.ry(),2));
@@ -225,14 +223,14 @@ void DrawPanel::paintEvent(QPaintEvent *event)
             painter.fillPath(path, fillbrush);
 
             Shape circle= Circle(R,"Circle 1",currentColor,brushWidth,firstPoint,true);
-            shapes.push_back(circle);
+            s->shapes.push_back(circle);
 
         }else if (getIsRectangle()){
             QRectF rect = QRectF(firstPoint, lastPoint);
             painter.drawRect(rect);
 
             Shape rectangle= Rectangle(abs(firstPoint.rx()-lastPoint.rx()),abs(firstPoint.ry()-lastPoint.ry()),"Rectangle 1",currentColor,brushWidth,firstPoint,false);
-            shapes.push_back(rectangle);
+            s->shapes.push_back(rectangle);
 
         }else if (getIsFilledRectangle()){
             QRectF rect = QRectF(firstPoint, lastPoint);
@@ -244,7 +242,7 @@ void DrawPanel::paintEvent(QPaintEvent *event)
             painter.fillPath(path,fillbrush);
 
             Shape rectangle= Rectangle(abs(firstPoint.rx()-lastPoint.rx()),abs(firstPoint.ry()-lastPoint.ry()),"Rectangle 1",currentColor,brushWidth,firstPoint,true);
-            shapes.push_back(rectangle);
+            s->shapes.push_back(rectangle);
 
         }else if (getIsTriangle()){
             QPointF *points = new QPointF[3];
@@ -256,7 +254,7 @@ void DrawPanel::paintEvent(QPaintEvent *event)
             polygon<<points[0]<<points[1]<<points[2];
             painter.drawPolygon(polygon);
             Shape triangle= Triangle(sqrt(pow(points[0].rx()-points[2].rx(),2)+pow(points[0].ry()-points[2].ry(),2)),sqrt(pow(points[1].rx()-points[2].rx(),2)+pow(points[1].ry()-points[2].ry(),2)),"Triangle 1",currentColor,brushWidth,firstPoint,false);
-            shapes.push_back(triangle);
+            s->shapes.push_back(triangle);
 
         }else if (getIsFilledTriangle()){
 
@@ -274,7 +272,7 @@ void DrawPanel::paintEvent(QPaintEvent *event)
         painter.fillPath(path,fillbrush);
 
         Shape triangle= Triangle(sqrt(pow(points[0].rx()-points[2].rx(),2)+pow(points[0].ry()-points[2].ry(),2)),sqrt(pow(points[1].rx()-points[2].rx(),2)+pow(points[1].ry()-points[2].ry(),2)),"Triangle 1",currentColor,brushWidth,firstPoint,true);
-        shapes.push_back(triangle);
+        s->shapes.push_back(triangle);
 
     }else if (getIsLine()){
         QPointF *points = new QPointF[2];
@@ -287,7 +285,7 @@ void DrawPanel::paintEvent(QPaintEvent *event)
 
 
         Shape line= Line(sqrt(pow(points[0].rx()-points[1].rx(),2)+pow(points[0].ry()-points[1].ry(),2)),"Line 1",currentColor,brushWidth,firstPoint);
-        shapes.push_back(line);
+        s->shapes.push_back(line);
 
     }/* else{
             painter.drawImage(dirtyRect, drawPanel, dirtyRect);

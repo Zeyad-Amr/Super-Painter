@@ -6,7 +6,7 @@
 #include <QPainter>
 #include <QFileDialog>
 #include <QStack>
-#include "shape.h"
+#include <shape.h>
 #include <vector>
 
 class DrawPanel : public QWidget
@@ -95,6 +95,7 @@ private:
     Qt::PenStyle penStyle;
     Qt::PenCapStyle capStyle;
     Qt::PenJoinStyle joinStyle;
+     Shape *s;
 
 
     int brushWidth;
@@ -115,7 +116,7 @@ private:
 
     QStack<QImage> undoStack;
     QStack<QImage> redoStack;
-    std::vector<Shape> shapes;
+
 
 
 };
