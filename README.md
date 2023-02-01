@@ -7,7 +7,7 @@
 ## Table of contents
 * [Introduction](#introduction)
 * [Features](#features)
-* [Screenshots](#demo)
+* [Demo](#demo)
 * [Technologies](#technologies)
 * [Launch](#launch)
 * [License](#license)
