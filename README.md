@@ -1,5 +1,5 @@
 <h1 align="center">
- <strong>PaintQT</strong>
+ <strong>Super Painter</strong>
  <br/><br/>
 </h1>
 
