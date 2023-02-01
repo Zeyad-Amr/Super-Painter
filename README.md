@@ -7,7 +7,7 @@
 ## Table of contents
 * [Introduction](#introduction)
 * [Features](#features)
-* [Screenshots](#screenshots)
+* [Screenshots](#demo)
 * [Technologies](#technologies)
 * [Launch](#launch)
 * [License](#license)
@@ -26,10 +26,9 @@ Draw shapes, fill them with color or erase them. Rescale, and zoom your picture.
 * Open/Save image in various formats
 * Cut/Copy/Paste image
 
-## Screenshots
-<p align="center">
- <img src="./Screenshots/paintqt.jpg" alt="Screenshot form PaintQT application"/>
-</p>
+## Demo
+https://user-images.githubusercontent.com/68791488/215924038-16d342ad-c2cb-4179-886e-090b9538e197.mp4
+
 
 ## Technologies
 * Qt Creator 4.11.0
